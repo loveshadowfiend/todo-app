@@ -1,0 +1,17 @@
+body {
+    margin-top: 5vh;
+    font-family: var(--font-family-base);
+}
+
+.container {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+button {
+    border: none;
+    width: 100px;
+    padding: 5px;
+    border-radius: 5px;
+}
