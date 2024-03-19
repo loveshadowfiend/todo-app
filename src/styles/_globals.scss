@@ -1,17 +1,47 @@
 body {
     margin-top: 5vh;
-    font-family: var(--font-family-base);
+    font-family: "Century Gothic";
+    margin-bottom: 5vh;
 }
 
 .container {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
+    background-color: white;
     padding: 20px;
+    box-shadow:
+        rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+        rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+h1 {
+    font-size: 18px;
+}
+
+h3 {
+    color: gray;
+    line-height: 1cm;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        color: var(--color-rose);
+    }
 }
 
 button {
+    border-radius: var(--border-radius);
     border: none;
-    width: 100px;
-    padding: 5px;
-    border-radius: 5px;
+    font-family: "Century Gothic";
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+    padding: 10px;
+
+    text-align: center;
 }

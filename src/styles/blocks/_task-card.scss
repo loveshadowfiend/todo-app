@@ -1,0 +1,11 @@
+.task-card {
+    &__name {
+        padding-bottom: 20px;
+    }
+
+    &__date,
+    &__priority,
+    &__tags {
+        padding-bottom: 10px;
+    }
+}

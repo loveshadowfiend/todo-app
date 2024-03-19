@@ -1,1 +1,249 @@
-/*# sourceMappingURL=style.css.map */
+:root {
+  --border-radius: 3px;
+  --font-family-base: "Helvetica";
+  --padding-side: 215px;
+  --color-base: #faf4ed;
+  --color-surface: #fffaf3;
+  --color-overlay: #f2e9e1;
+  --color-muted: #9893a5;
+  --color-subtle: #797593;
+  --color-text: #575279;
+  --color-love: #b4637a;
+  --color-gold: #ea9d34;
+  --color-rose: #d7827e;
+  --color-pine: #286983;
+  --color-foam: #56949f;
+  --color-iris: #907aa9;
+  --color-highlight-low: #f4ede8;
+  --color-highlight-med: #dfdad9;
+  --color-highlight-high: #cecacd;
+}
+
+body {
+  margin-top: 5vh;
+  font-family: "Century Gothic";
+  margin-bottom: 5vh;
+}
+
+.container {
+  border-radius: var(--border-radius);
+  background-color: white;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+h3 {
+  color: gray;
+  line-height: 1cm;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  color: var(--color-rose);
+}
+
+button {
+  border-radius: var(--border-radius);
+  border: none;
+  font-family: "Century Gothic";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+  text-align: center;
+}
+
+.task-board {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: row;
+  gap: 20px;
+}
+.task-board__options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.task-board__tasks {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  gap: 20px;
+}
+.task-board__tasks__add-task-button {
+  background-color: var(--color-foam);
+}
+
+.task-view,
+.task-add {
+  margin: auto;
+  width: 50vw;
+}
+.task-view__buttons,
+.task-add__buttons {
+  padding-bottom: 20px;
+  width: 50vw;
+  display: flex;
+  gap: 10px;
+}
+.task-view__buttons-delete,
+.task-add__buttons-delete {
+  background-color: var(--color-rose);
+  margin-left: auto;
+}
+.task-view__buttons-edit,
+.task-add__buttons-edit {
+  background-color: var(--color-foam);
+}
+.task-view__buttons button,
+.task-add__buttons button {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+}
+.task-view__card,
+.task-add__card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.task-card__name {
+  padding-bottom: 20px;
+}
+.task-card__date, .task-card__priority, .task-card__tags {
+  padding-bottom: 10px;
+}
+
+.task-add {
+  margin: auto;
+  width: 50vw;
+}
+.task-add__buttons {
+  padding-bottom: 20px;
+  width: 50vw;
+  display: flex;
+  gap: 10px;
+}
+.task-add__buttons-delete {
+  background-color: var(--color-rose);
+  margin-left: auto;
+}
+.task-add__buttons-edit {
+  background-color: var(--color-foam);
+}
+.task-add__buttons button {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+}
+.task-add__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.task-add__form__input-name {
+  height: 30px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.task-add__form__select-priority, .task-add__form__select-tags {
+  height: 30px;
+  width: 30%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.task-add__form__select-tags {
+  height: -moz-fit-content;
+  height: fit-content;
+  overflow-y: auto;
+}
+.task-add__form__textarea-description {
+  resize: none;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.task-edit {
+  margin: auto;
+  width: 50vw;
+}
+.task-edit__buttons {
+  padding-bottom: 20px;
+  width: 50vw;
+  display: flex;
+  gap: 10px;
+}
+.task-edit__buttons-delete {
+  background-color: var(--color-rose);
+  margin-left: auto;
+}
+.task-edit__buttons-edit {
+  background-color: var(--color-foam);
+}
+.task-edit__buttons button {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+}
+.task-edit__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.task-edit__form__input-name {
+  height: 30px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.task-edit__form__select-priority, .task-edit__form__select-tags {
+  height: 30px;
+  width: 30%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.task-edit__form__select-tags {
+  height: -moz-fit-content;
+  height: fit-content;
+  overflow-y: auto;
+}
+.task-edit__form__textarea-description {
+  resize: none;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.task-edit__form select,
+.task-edit__form input {
+  padding-left: 5px;
+}
+
+.priorities {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+.priorities__option-label {
+  padding-left: 5px;
+}
+.priorities__row {
+  padding-bottom: 5px;
+}
+
+.tags {
+  display: flex;
+  flex-direction: column;
+}
+.tags__option-label {
+  padding-left: 5px;
+}
+.tags__row {
+  padding-bottom: 5px;
+}/*# sourceMappingURL=style.css.map */

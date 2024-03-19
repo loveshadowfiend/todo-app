@@ -2,7 +2,7 @@
 export type Task = {
     id: string;
     name: string;
-    creationDate: Date;
+    creationDate: string;
     priority: string;
     tags: string[];
     description: string;

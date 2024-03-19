@@ -1,0 +1,31 @@
+.task-view {
+    margin: auto;
+    width: 50vw;
+
+    &__buttons {
+        padding-bottom: 20px;
+        width: 50vw;
+        display: flex;
+        gap: 10px;
+
+        &-delete {
+            background-color: var(--color-rose);
+            margin-left: auto;
+        }
+
+        &-edit {
+            background-color: var(--color-foam);
+        }
+
+        button {
+            width: fit-content;
+            padding: 10px;
+        }
+    }
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

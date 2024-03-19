@@ -1,0 +1,24 @@
+.task-board {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+
+    &__options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &__tasks {
+        display: flex;
+        flex-direction: column;
+        width: 50vw;
+        gap: 20px;
+
+        &__add-task-button {
+            background-color: var(--color-foam);
+        }
+    }
+}

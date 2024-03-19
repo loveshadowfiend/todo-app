@@ -1,0 +1,14 @@
+.tags {
+    display: flex;
+    flex-direction: column;
+
+    &__option {
+        &-label {
+            padding-left: 5px;
+        }
+    }
+
+    &__row {
+        padding-bottom: 5px;
+    }
+}
