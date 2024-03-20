@@ -67,7 +67,11 @@ button {
   align-items: start;
   justify-content: center;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
+}
+.task-board__add-task-button {
+  background-color: var(--color-foam);
 }
 .task-board__options {
   display: flex;
@@ -80,42 +84,60 @@ button {
   width: 50vw;
   gap: 20px;
 }
-.task-board__tasks__add-task-button {
-  background-color: var(--color-foam);
+.task-board:nth-last-child(-n+2) {
+  order: -1;
+}
+@media (max-width: 767px) {
+  .task-board {
+    display: grid;
+    font-size: 14px;
+  }
+  .task-board__tasks__add-task-button {
+    order: 1;
+  }
+  .task-board__tasks {
+    order: 3;
+    width: 80vw;
+  }
+  .task-board__options {
+    order: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
-.task-view,
-.task-add {
+.task-view {
   margin: auto;
   width: 50vw;
 }
-.task-view__buttons,
-.task-add__buttons {
+.task-view__buttons {
   padding-bottom: 20px;
   width: 50vw;
   display: flex;
   gap: 10px;
 }
-.task-view__buttons-delete,
-.task-add__buttons-delete {
+.task-view__buttons-delete {
   background-color: var(--color-rose);
   margin-left: auto;
 }
-.task-view__buttons-edit,
-.task-add__buttons-edit {
+.task-view__buttons-edit {
   background-color: var(--color-foam);
 }
-.task-view__buttons button,
-.task-add__buttons button {
+.task-view__buttons button {
   width: -moz-fit-content;
   width: fit-content;
   padding: 10px;
 }
-.task-view__card,
-.task-add__card {
+.task-view__card {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+@media (max-width: 767px) {
+  .task-view {
+    width: 90vw;
+  }
 }
 
 .task-card__name {

@@ -30,7 +30,7 @@ export const TaskAddForm = (props: TaskProps) => {
     };
 
     return (
-        <>
+        <div className="task-add">
             <div className="task-add__buttons">
                 <button
                     className="task-add__buttons-back"
@@ -125,6 +125,6 @@ export const TaskAddForm = (props: TaskProps) => {
                     Сохранить
                 </button>
             </form>
-        </>
+        </div>
     );
 };

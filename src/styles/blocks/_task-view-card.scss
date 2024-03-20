@@ -28,4 +28,8 @@
         flex-direction: column;
         gap: 20px;
     }
+
+    @include mobile {
+        width: 90vw;
+    }
 }

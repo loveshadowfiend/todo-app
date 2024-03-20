@@ -17,7 +17,7 @@ export const TaskEditForm = (props: TaskProps) => {
     };
 
     return (
-        <>
+        <div className="task-edit">
             <div className="task-edit__buttons">
                 <button
                     className="task-edit__buttons-back"
@@ -113,6 +113,6 @@ export const TaskEditForm = (props: TaskProps) => {
 
                 <button type="submit">Сохранить</button>
             </form>
-        </>
+        </div>
     );
 };
