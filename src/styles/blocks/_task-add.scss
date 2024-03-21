@@ -52,4 +52,12 @@
             border: 1px solid rgba(0, 0, 0, 0.08);
         }
     }
+
+    @include mobile {
+        width: 90vw;
+    }
+
+    @include tablet {
+        width: 80vw;
+    }
 }

@@ -45,7 +45,7 @@ export const TaskView = (props: TaskViewProps) => {
                 </div>
 
                 <div className="task-view__card__row">
-                    <h3>ДАТА СОЗДАИНЯ</h3>
+                    <h3>ДАТА СОЗДАНИЯ</h3>
                     <p>{props.task.creationDate.toString()}</p>
                 </div>
 

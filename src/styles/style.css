@@ -1,3 +1,23 @@
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.container {
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
 :root {
   --border-radius: 3px;
   --font-family-base: "Helvetica";
@@ -25,13 +45,6 @@ body {
   margin-bottom: 5vh;
 }
 
-.container {
-  border-radius: var(--border-radius);
-  background-color: white;
-  padding: 20px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-}
-
 h1 {
   font-size: 18px;
 }
@@ -45,8 +58,15 @@ a {
   text-decoration: none;
   color: inherit;
 }
-a:hover {
-  color: var(--color-rose);
+@media (hover: hover) {
+  a:hover {
+    color: var(--color-foam);
+  }
+}
+@media (hover: none) {
+  a:active {
+    color: var(--color-foam);
+  }
 }
 
 button {
@@ -60,6 +80,16 @@ button {
   width: fit-content;
   padding: 10px;
   text-align: center;
+}
+@media (hover: hover) {
+  button:hover {
+    background-color: var(--color-highlight-high);
+  }
+}
+@media (hover: none) {
+  button:active {
+    background-color: var(--color-highlight-high);
+  }
 }
 
 .task-board {
@@ -97,7 +127,7 @@ button {
   }
   .task-board__tasks {
     order: 3;
-    width: 80vw;
+    width: 90vw;
   }
   .task-board__options {
     order: 2;
@@ -137,6 +167,11 @@ button {
 @media (max-width: 767px) {
   .task-view {
     width: 90vw;
+  }
+}
+@media (max-width: 1023px) {
+  .task-view {
+    width: 80vw;
   }
 }
 
@@ -194,6 +229,16 @@ button {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
+@media (max-width: 767px) {
+  .task-add {
+    width: 90vw;
+  }
+}
+@media (max-width: 1023px) {
+  .task-add {
+    width: 80vw;
+  }
+}
 
 .task-edit {
   margin: auto;
@@ -204,13 +249,6 @@ button {
   width: 50vw;
   display: flex;
   gap: 10px;
-}
-.task-edit__buttons-delete {
-  background-color: var(--color-rose);
-  margin-left: auto;
-}
-.task-edit__buttons-edit {
-  background-color: var(--color-foam);
 }
 .task-edit__buttons button {
   width: -moz-fit-content;
@@ -225,7 +263,7 @@ button {
 .task-edit__form__input-name {
   height: 30px;
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(211, 167, 167, 0.08);
 }
 .task-edit__form__select-priority, .task-edit__form__select-tags {
   height: 30px;
@@ -242,9 +280,15 @@ button {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
-.task-edit__form select,
-.task-edit__form input {
-  padding-left: 5px;
+@media (max-width: 767px) {
+  .task-edit {
+    width: 90vw;
+  }
+}
+@media (max-width: 1023px) {
+  .task-edit {
+    width: 80vw;
+  }
 }
 
 .priorities {
@@ -267,5 +311,17 @@ button {
   padding-left: 5px;
 }
 .tags__row {
+  padding-bottom: 5px;
+}
+
+.sort-date {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+.sort-date__option-label {
+  padding-left: 5px;
+}
+.sort-date__row {
   padding-bottom: 5px;
 }/*# sourceMappingURL=style.css.map */

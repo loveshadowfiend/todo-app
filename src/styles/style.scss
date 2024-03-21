@@ -1,4 +1,5 @@
-@import "vars", "media", "globals";
+@import "utils", "vars", "media", "globals";
 
-@import "blocks/task-board", "blocks/task-view-card", "blocks/task-card",
-    "blocks/task-add", "blocks/task-edit", "blocks/priorities", "blocks/tags";
+@import "blocks/task-board", "blocks/task-view", "blocks/task-card",
+    "blocks/task-add", "blocks/task-edit", "blocks/priorities", "blocks/tags",
+    "blocks/sort-date";

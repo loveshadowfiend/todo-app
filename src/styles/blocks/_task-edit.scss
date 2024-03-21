@@ -8,15 +8,6 @@
         display: flex;
         gap: 10px;
 
-        &-delete {
-            background-color: var(--color-rose);
-            margin-left: auto;
-        }
-
-        &-edit {
-            background-color: var(--color-foam);
-        }
-
         button {
             width: fit-content;
             padding: 10px;
@@ -31,7 +22,7 @@
         &__input-name {
             height: 30px;
             width: 100%;
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(211, 167, 167, 0.08);
         }
 
         &__select-priority,
@@ -51,10 +42,13 @@
             width: 100%;
             border: 1px solid rgba(0, 0, 0, 0.08);
         }
+    }
 
-        select,
-        input {
-            padding-left: 5px;
-        }
+    @include mobile {
+        width: 90vw;
+    }
+
+    @include tablet {
+        width: 80vw;
     }
 }

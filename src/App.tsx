@@ -6,59 +6,41 @@ import { TaskView } from "./components/TaskView";
 import { TaskEditForm } from "./components/TaskEditForm";
 import { useUpdateEffect } from "react-use";
 import { TaskBoard } from "./components/TaskBoard";
-
-const defaultTaskState: Task = {
-    id: "not set",
-    name: "not set",
-    creationDate: new Date().toLocaleString(),
-    priority: "low",
-    tags: ["research"],
-    description: "if you see this - something went wrong :/",
-};
+import { defaultTaskState } from "./constants/defaultTaskState";
+import { defaultTagOptions } from "./constants/defaultTagOptions";
+import { defaultSortOptions } from "./constants/defaultSortOptions";
 
 const App = () => {
     // states
     const [tasks, setTasks] = useState<Task[]>([]);
-    const [options, setOptions] = useState<Map<string, boolean>>(
-        new Map<string, boolean>([
-            ["sortDateAsc", true],
-            ["sortDateDesc", false],
-
-            ["low", true],
-            ["normal", true],
-            ["high", true],
-
-            ["research", true],
-            ["development", true],
-            ["design", true],
-        ])
-    );
-    const [currentTask, setCurrentTask] = useState<Task | null>(null);
+    const [tasksReversed, setTasksReversed] = useState<Task[]>([]);
+    const [sortOptions, setSortOptions] =
+        useState<Map<string, boolean>>(defaultSortOptions);
+    const [tagOptions, setTagOptions] =
+        useState<Map<string, boolean>>(defaultTagOptions);
+    const [currentTask, setCurrentTask] = useState<Task>(defaultTaskState);
     const [isAddTaskActive, setIsAddTaskActive] = useState<boolean>(false);
     const [isTaskViewActive, setIsTaskViewActive] = useState<boolean>(false);
     const [isEditActive, setIsEditActive] = useState<boolean>(false);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
-    const [width, setWidth] = useState<number>(window.innerWidth);
 
     // constants
-    const tasksPerPage = 15;
-    const isMobile = width <= 768;
+    const tasksPerPage: number = 15;
 
     // effects
     useEffect(() => {
-        window.addEventListener("resize", handleWindowSizeChange);
-        return () => {
-            window.removeEventListener("resize", handleWindowSizeChange);
-        };
-    }, []);
-
-    useEffect(() => {
         // load tasks from local storage
-        const localStorageData: string = localStorage.getItem("tasks") ?? "";
+        const localStorageDataTasks: string =
+            localStorage.getItem("tasks") ?? "";
 
-        if (localStorageData.length > 0) {
-            setTasks(JSON.parse(localStorageData));
+        if (localStorageDataTasks.length > 0) {
+            const localStorageDataTasksParsed = JSON.parse(
+                localStorageDataTasks
+            );
+
+            setTasks(localStorageDataTasksParsed);
+            setTasksReversed(localStorageDataTasksParsed.reverse());
         }
 
         // infinite scroll
@@ -69,13 +51,12 @@ const App = () => {
     useEffect(() => {
         if (!loading) return;
 
-        console.log("loading");
-
         setPage((prevPage) => prevPage + 1);
         setLoading(false);
     }, [loading]);
 
     useUpdateEffect(() => {
+        setTasksReversed(tasks.reverse());
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
 
@@ -99,10 +80,6 @@ const App = () => {
         if (scrolledToBottom && !loading) {
             setLoading(true);
         }
-    };
-
-    const handleWindowSizeChange = () => {
-        setWidth(window.innerWidth);
     };
 
     const addTask = (task: Task) => {
@@ -130,13 +107,13 @@ const App = () => {
         setIsTaskViewActive(true);
     };
 
-    const toggleOption = (option: string) => {
-        const updatedOptions = new Map(options);
-        const value: boolean = options.get(option) ?? false;
+    const toggleTagOption = (option: string) => {
+        const updatedTagOptions = new Map(tagOptions);
+        const value = tagOptions.get(option);
 
-        updatedOptions.set(option, !value);
+        updatedTagOptions.set(option, !value);
 
-        setOptions(updatedOptions);
+        setTagOptions(updatedTagOptions);
     };
 
     const deleteTask = (deletedTask: Task) => {
@@ -151,20 +128,24 @@ const App = () => {
 
     // render
     return (
-        <>
-            {!isAddTaskActive && !isEditActive && !isTaskViewActive && (
+        <div className="App">
+            <div
+                className={`task-board ${isAddTaskActive || isEditActive || isTaskViewActive ? "hidden" : ""}`}
+            >
                 <TaskBoard
                     tasks={tasks}
-                    isMobile={isMobile}
                     setIsAddTaskActive={setIsAddTaskActive}
-                    toggleOption={toggleOption}
+                    toggleTagOption={toggleTagOption}
                     page={page}
                     tasksPerPage={tasksPerPage}
-                    options={options}
+                    options={tagOptions}
                     setCurrentTask={setCurrentTask}
                     setIsTaskViewActive={setIsTaskViewActive}
+                    switchSortOption={function (option: string): void {
+                        throw new Error("Function not implemented.");
+                    }}
                 />
-            )}
+            </div>
 
             {isAddTaskActive && (
                 <TaskAddForm
@@ -189,7 +170,7 @@ const App = () => {
                     setIsEditActive={setIsEditActive}
                 />
             )}
-        </>
+        </div>
     );
 };
 

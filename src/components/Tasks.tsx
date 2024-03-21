@@ -5,7 +5,7 @@ import { TaskCard } from "./TaskCard";
 interface TasksProps {
     tasks: Task[];
     options: Map<string, boolean>;
-    setCurrentTask: React.Dispatch<React.SetStateAction<Task | null>>;
+    setCurrentTask: React.Dispatch<React.SetStateAction<Task>>;
     setIsTaskViewActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

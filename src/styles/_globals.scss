@@ -4,15 +4,6 @@ body {
     margin-bottom: 5vh;
 }
 
-.container {
-    border-radius: var(--border-radius);
-    background-color: white;
-    padding: 20px;
-    box-shadow:
-        rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-        rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-}
-
 h1 {
     font-size: 18px;
 }
@@ -26,8 +17,8 @@ a {
     text-decoration: none;
     color: inherit;
 
-    &:hover {
-        color: var(--color-rose);
+    @include hover {
+        color: var(--color-foam);
     }
 }
 
@@ -44,4 +35,8 @@ button {
     padding: 10px;
 
     text-align: center;
+
+    @include hover {
+        background-color: var(--color-highlight-high);
+    }
 }

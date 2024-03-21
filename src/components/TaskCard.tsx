@@ -2,7 +2,7 @@ import { Task } from "../types/task";
 
 interface TaskProps {
     task: Task;
-    setCurrentTask: React.Dispatch<React.SetStateAction<Task | null>>;
+    setCurrentTask: React.Dispatch<React.SetStateAction<Task>>;
     setIsTaskViewActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
