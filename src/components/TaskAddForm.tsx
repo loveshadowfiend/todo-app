@@ -1,27 +1,16 @@
 import { FormEvent, useState } from "react";
 import { Task } from "../types/task";
+import { defaultTaskState } from "../constants/defaultTaskState";
+import { useAppStore } from "../stores/AppStore";
 
-interface TaskProps {
-    addTask: (task: Task) => void;
-    setIsAddActive: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const defaultTaskState: Task = {
-    id: "",
-    name: "",
-    creationDate: new Date().toLocaleString(),
-    priority: "low",
-    tags: ["research"],
-    description: "",
-};
-
-export const TaskAddForm = (props: TaskProps) => {
+export const TaskAddForm = () => {
+    const { addTask } = useAppStore();
     const [task, setTask] = useState<Task>(defaultTaskState);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        props.addTask(task);
+        addTask(task);
 
         (e.target as HTMLFormElement).reset();
         setTask({
@@ -35,7 +24,7 @@ export const TaskAddForm = (props: TaskProps) => {
                 <button
                     className="task-add__buttons-back"
                     onClick={() => {
-                        props.setIsAddActive(false);
+                        useAppStore.setState({ isAddTaskActive: false });
                     }}
                 >
                     Назад

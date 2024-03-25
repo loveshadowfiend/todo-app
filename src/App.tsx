@@ -1,32 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Task } from "./types/task";
-import { v4 as uuidv4 } from "uuid";
 import { TaskAddForm } from "./components/TaskAddForm";
 import { TaskView } from "./components/TaskView";
 import { TaskEditForm } from "./components/TaskEditForm";
 import { useUpdateEffect } from "react-use";
 import { TaskBoard } from "./components/TaskBoard";
-import { defaultTaskState } from "./constants/defaultTaskState";
-import { defaultTagOptions } from "./constants/defaultTagOptions";
-import { defaultSortOptions } from "./constants/defaultSortOptions";
+import { useAppStore } from "./stores/AppStore";
 
 const App = () => {
     // states
-    const [tasks, setTasks] = useState<Task[]>([]);
-    const [tasksReversed, setTasksReversed] = useState<Task[]>([]);
-    const [sortOptions, setSortOptions] =
-        useState<Map<string, boolean>>(defaultSortOptions);
-    const [tagOptions, setTagOptions] =
-        useState<Map<string, boolean>>(defaultTagOptions);
-    const [currentTask, setCurrentTask] = useState<Task>(defaultTaskState);
-    const [isAddTaskActive, setIsAddTaskActive] = useState<boolean>(false);
-    const [isTaskViewActive, setIsTaskViewActive] = useState<boolean>(false);
-    const [isEditActive, setIsEditActive] = useState<boolean>(false);
-    const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(false);
-
-    // constants
-    const tasksPerPage: number = 15;
+    const {
+        tasks,
+        isAddTaskActive,
+        isTaskViewActive,
+        isEditActive,
+        isLoading,
+        page,
+    } = useAppStore();
 
     // effects
     useEffect(() => {
@@ -35,12 +25,11 @@ const App = () => {
             localStorage.getItem("tasks") ?? "";
 
         if (localStorageDataTasks.length > 0) {
-            const localStorageDataTasksParsed = JSON.parse(
+            const localStorageDataTasksParsed: Task[] = JSON.parse(
                 localStorageDataTasks
             );
 
-            setTasks(localStorageDataTasksParsed);
-            setTasksReversed(localStorageDataTasksParsed.reverse());
+            useAppStore.setState({ tasks: localStorageDataTasksParsed });
         }
 
         // infinite scroll
@@ -49,14 +38,12 @@ const App = () => {
     }, []);
 
     useEffect(() => {
-        if (!loading) return;
+        if (!isLoading) return;
 
-        setPage((prevPage) => prevPage + 1);
-        setLoading(false);
-    }, [loading]);
+        useAppStore.setState({ page: page + 1, isLoading: false });
+    }, [isLoading]);
 
     useUpdateEffect(() => {
-        setTasksReversed(tasks.reverse());
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
 
@@ -77,53 +64,9 @@ const App = () => {
         const scrolledToBottom =
             Math.ceil(scrollTop + clientHeight) >= scrollHeight;
 
-        if (scrolledToBottom && !loading) {
-            setLoading(true);
+        if (scrolledToBottom && !isLoading) {
+            useAppStore.setState({ isLoading: true });
         }
-    };
-
-    const addTask = (task: Task) => {
-        setTasks([
-            ...tasks,
-            {
-                ...task,
-                id: uuidv4().toString(),
-            },
-        ]);
-
-        setIsAddTaskActive(false);
-    };
-
-    // helper functions
-    const editTask = (updatedTask: Task) => {
-        const updatedTasks = tasks.map((task) => {
-            return task.id == updatedTask.id ? updatedTask : task;
-        });
-
-        setTasks(updatedTasks);
-        setCurrentTask(updatedTask);
-
-        setIsEditActive(false);
-        setIsTaskViewActive(true);
-    };
-
-    const toggleTagOption = (option: string) => {
-        const updatedTagOptions = new Map(tagOptions);
-        const value = tagOptions.get(option);
-
-        updatedTagOptions.set(option, !value);
-
-        setTagOptions(updatedTagOptions);
-    };
-
-    const deleteTask = (deletedTask: Task) => {
-        const updatedTasks = tasks.filter((task) => {
-            return task.id != deletedTask.id;
-        });
-
-        setTasks(updatedTasks);
-        setCurrentTask(defaultTaskState);
-        setIsTaskViewActive(false);
     };
 
     // render
@@ -132,44 +75,14 @@ const App = () => {
             <div
                 className={`task-board ${isAddTaskActive || isEditActive || isTaskViewActive ? "hidden" : ""}`}
             >
-                <TaskBoard
-                    tasks={tasks}
-                    setIsAddTaskActive={setIsAddTaskActive}
-                    toggleTagOption={toggleTagOption}
-                    page={page}
-                    tasksPerPage={tasksPerPage}
-                    options={tagOptions}
-                    setCurrentTask={setCurrentTask}
-                    setIsTaskViewActive={setIsTaskViewActive}
-                    switchSortOption={function (option: string): void {
-                        throw new Error("Function not implemented.");
-                    }}
-                />
+                <TaskBoard />
             </div>
 
-            {isAddTaskActive && (
-                <TaskAddForm
-                    addTask={addTask}
-                    setIsAddActive={setIsAddTaskActive}
-                />
-            )}
+            {isAddTaskActive && <TaskAddForm />}
 
-            {isTaskViewActive && (
-                <TaskView
-                    task={currentTask ?? defaultTaskState}
-                    deleteTask={deleteTask}
-                    setIsTaskViewActive={setIsTaskViewActive}
-                    setIsEditActive={setIsEditActive}
-                />
-            )}
+            {isTaskViewActive && <TaskView />}
 
-            {isEditActive && (
-                <TaskEditForm
-                    task={currentTask ?? defaultTaskState}
-                    editTask={editTask}
-                    setIsEditActive={setIsEditActive}
-                />
-            )}
+            {isEditActive && <TaskEditForm />}
         </div>
     );
 };

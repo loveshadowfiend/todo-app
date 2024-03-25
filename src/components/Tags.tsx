@@ -1,8 +1,8 @@
-interface OptionProps {
-    toggleOption: (option: string) => void;
-}
+import { useAppStore } from "../stores/AppStore";
 
-export const Tags = (props: OptionProps) => {
+export const Tags = () => {
+    const { toggleTagOption } = useAppStore();
+
     return (
         <div className="tags">
             <h3>ОТМЕТКИ</h3>
@@ -15,7 +15,7 @@ export const Tags = (props: OptionProps) => {
                     value="research"
                     defaultChecked={true}
                     onChange={(e) => {
-                        props.toggleOption(e.target.value);
+                        toggleTagOption(e.target.value);
                     }}
                 />
                 <label className="tags__option-label" htmlFor="low">
@@ -31,7 +31,7 @@ export const Tags = (props: OptionProps) => {
                     value="design"
                     defaultChecked={true}
                     onChange={(e) => {
-                        props.toggleOption(e.target.value);
+                        toggleTagOption(e.target.value);
                     }}
                 />
                 <label className="tags__option-label" htmlFor="normal">
@@ -47,7 +47,7 @@ export const Tags = (props: OptionProps) => {
                     value="development"
                     defaultChecked={true}
                     onChange={(e) => {
-                        props.toggleOption(e.target.value);
+                        toggleTagOption(e.target.value);
                     }}
                 />
                 <label className="tags__option-label" htmlFor="high">

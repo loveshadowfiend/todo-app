@@ -1,23 +1,23 @@
-import React, { SetStateAction, useEffect, useState } from "react";
+import { Tasks } from "./Tasks";
+import { useAppStore } from "../stores/AppStore";
+import { useEffect, useState } from "react";
+import { SortDate } from "./SortDate";
 import { Priorities } from "./Priorities";
 import { Tags } from "./Tags";
-import { Tasks } from "./Tasks";
-import { Task } from "../types/task";
-import { SortDate } from "./SortDate";
 
-interface TaskBoardProps {
-    tasks: Task[];
-    setIsAddTaskActive: React.Dispatch<SetStateAction<boolean>>;
-    toggleTagOption: (option: string) => void;
-    switchSortOption: (option: string) => void;
-    page: number;
-    tasksPerPage: number;
-    options: Map<string, boolean>;
-    setCurrentTask: React.Dispatch<SetStateAction<Task>>;
-    setIsTaskViewActive: React.Dispatch<React.SetStateAction<boolean>>;
-}
+// interface TaskBoardProps {
+//     tasks: Task[];
+//     setIsAddTaskActive: React.Dispatch<SetStateAction<boolean>>;
+//     toggleTagOption: (option: string) => void;
+//     switchSortOption: (option: string) => void;
+//     page: number;
+//     tasksPerPage: number;
+//     options: Map<string, boolean>;
+//     setCurrentTask: React.Dispatch<SetStateAction<Task>>;
+//     setIsTaskViewActive: React.Dispatch<React.SetStateAction<boolean>>;
+// }
 
-export const TaskBoard = (props: TaskBoardProps) => {
+export const TaskBoard = () => {
     const [width, setWidth] = useState<number>(window.innerWidth);
 
     const isMobile = width < 768;
@@ -38,39 +38,34 @@ export const TaskBoard = (props: TaskBoardProps) => {
             {isMobile && (
                 <button
                     className="task-board__add-task-button"
-                    onClick={() => props.setIsAddTaskActive(true)}
+                    onClick={() =>
+                        useAppStore.setState({ isAddTaskActive: true })
+                    }
                 >
                     Добавить задачу
                 </button>
             )}
             <div className="task-board__options">
                 <div className="task-board__options__sort container">
-                    <SortDate switchSortOption={props.switchSortOption} />
+                    <SortDate />
                 </div>
                 <div className="task-board__options__filter container">
-                    <Priorities toggleOption={props.toggleTagOption} />
-                    <Tags toggleOption={props.toggleTagOption} />
+                    <Priorities />
+                    <Tags />
                 </div>
             </div>
             <div className="task-board__tasks">
                 {!isMobile && (
                     <button
                         className="task-board__add-task-button"
-                        onClick={() => props.setIsAddTaskActive(true)}
+                        onClick={() =>
+                            useAppStore.setState({ isAddTaskActive: true })
+                        }
                     >
                         Добавить задачу
                     </button>
                 )}
-                <Tasks
-                    key="1"
-                    tasks={props.tasks.slice(
-                        0,
-                        props.page * props.tasksPerPage - 1
-                    )}
-                    options={props.options}
-                    setCurrentTask={props.setCurrentTask}
-                    setIsTaskViewActive={props.setIsTaskViewActive}
-                />
+                <Tasks />
             </div>
         </>
     );

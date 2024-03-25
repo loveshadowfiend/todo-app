@@ -1,20 +1,15 @@
-import { Task } from "../types/task";
+import { useAppStore } from "../stores/AppStore";
 
-interface TaskViewProps {
-    task: Task;
-    deleteTask: (task: Task) => void;
-    setIsTaskViewActive: React.Dispatch<React.SetStateAction<boolean>>;
-    setIsEditActive: React.Dispatch<React.SetStateAction<boolean>>;
-}
+export const TaskView = () => {
+    const { currentTask, deleteTask } = useAppStore();
 
-export const TaskView = (props: TaskViewProps) => {
     return (
         <div className="task-view">
             <div className="task-view__buttons">
                 <button
                     className="task-view__buttons-back"
                     onClick={() => {
-                        props.setIsTaskViewActive(false);
+                        useAppStore.setState({ isTaskViewActive: false });
                     }}
                 >
                     Назад
@@ -22,8 +17,10 @@ export const TaskView = (props: TaskViewProps) => {
                 <button
                     className="task-view__buttons-edit"
                     onClick={() => {
-                        props.setIsTaskViewActive(false);
-                        props.setIsEditActive(true);
+                        useAppStore.setState({
+                            isTaskViewActive: false,
+                            isEditActive: true,
+                        });
                     }}
                 >
                     Редактировать
@@ -31,7 +28,10 @@ export const TaskView = (props: TaskViewProps) => {
                 <button
                     className="task-view__buttons-delete"
                     onClick={() => {
-                        props.deleteTask(props.task);
+                        deleteTask(currentTask);
+                        useAppStore.setState({
+                            isTaskViewActive: false,
+                        });
                     }}
                 >
                     Удалить
@@ -41,27 +41,27 @@ export const TaskView = (props: TaskViewProps) => {
             <div className="task-view__card container">
                 <div className="task-view__card__row">
                     <h3>НАЗВАНИЕ ЗАДАЧИ</h3>
-                    <p>{props.task.name}</p>
+                    <p>{currentTask.name}</p>
                 </div>
 
                 <div className="task-view__card__row">
                     <h3>ДАТА СОЗДАНИЯ</h3>
-                    <p>{props.task.creationDate.toString()}</p>
+                    <p>{currentTask.creationDate.toString()}</p>
                 </div>
 
                 <div className="task-view__card__row">
                     <h3>ПРИОРИТЕТ</h3>
-                    <p>{props.task.priority}</p>
+                    <p>{currentTask.priority}</p>
                 </div>
 
                 <div className="task-view__card__row">
                     <h3>ОТМЕТКИ</h3>
-                    <p>{props.task.tags.join(" ")}</p>
+                    <p>{currentTask.tags.join(" ")}</p>
                 </div>
 
                 <div className="task-view__card__row">
                     <h3>ОПИСАНИЕ</h3>
-                    <p>{props.task.description}</p>
+                    <p>{currentTask.description}</p>
                 </div>
             </div>
         </div>

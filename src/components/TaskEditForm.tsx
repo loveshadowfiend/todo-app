@@ -1,19 +1,20 @@
-import { FormEvent, SetStateAction, useState } from "react";
+import { FormEvent, useState } from "react";
 import { Task } from "../types/task";
+import { useAppStore } from "../stores/AppStore";
 
-interface TaskProps {
-    task: Task;
-    editTask: (task: Task) => void;
-    setIsEditActive: React.Dispatch<SetStateAction<boolean>>;
-}
-
-export const TaskEditForm = (props: TaskProps) => {
-    const [task, setTask] = useState<Task>(props.task);
+export const TaskEditForm = () => {
+    const { currentTask, editTask } = useAppStore();
+    const [task, setTask] = useState<Task>(currentTask);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        props.editTask(task);
+        editTask(task);
+        useAppStore.setState({
+            isEditActive: false,
+            isTaskViewActive: true,
+            currentTask: task,
+        });
     };
 
     return (
@@ -22,7 +23,7 @@ export const TaskEditForm = (props: TaskProps) => {
                 <button
                     className="task-edit__buttons-back"
                     onClick={() => {
-                        props.setIsEditActive(false);
+                        useAppStore.setState({ isEditActive: false });
                     }}
                 >
                     Назад

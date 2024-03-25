@@ -1,8 +1,8 @@
-interface OptionProps {
-    toggleOption: (option: string) => void;
-}
+import { useAppStore } from "../stores/AppStore";
 
-export const Priorities = (props: OptionProps) => {
+export const Priorities = () => {
+    const { toggleTagOption } = useAppStore();
+
     return (
         <div className="priorities">
             <h3 className="priorities__header">ПРИОРИТЕТ</h3>
@@ -15,7 +15,7 @@ export const Priorities = (props: OptionProps) => {
                     value="low"
                     defaultChecked={true}
                     onChange={(e) => {
-                        props.toggleOption(e.target.value);
+                        toggleTagOption(e.target.value);
                     }}
                 />
                 <label className="priorities__option-label" htmlFor="low">
@@ -31,7 +31,7 @@ export const Priorities = (props: OptionProps) => {
                     value="normal"
                     defaultChecked={true}
                     onChange={(e) => {
-                        props.toggleOption(e.target.value);
+                        toggleTagOption(e.target.value);
                     }}
                 />
                 <label className="priorities__option-label" htmlFor="normal">
@@ -47,7 +47,7 @@ export const Priorities = (props: OptionProps) => {
                     value="high"
                     defaultChecked={true}
                     onChange={(e) => {
-                        props.toggleOption(e.target.value);
+                        toggleTagOption(e.target.value);
                     }}
                 />
                 <label className="priorities__option-label" htmlFor="high">

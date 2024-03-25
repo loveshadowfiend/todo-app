@@ -1,38 +1,28 @@
-import React from "react";
-import { Task } from "../types/task";
 import { TaskCard } from "./TaskCard";
+import { useAppStore } from "../stores/AppStore";
 
-interface TasksProps {
-    tasks: Task[];
-    options: Map<string, boolean>;
-    setCurrentTask: React.Dispatch<React.SetStateAction<Task>>;
-    setIsTaskViewActive: React.Dispatch<React.SetStateAction<boolean>>;
-}
+export const Tasks = () => {
+    const { tasks, tagOptions, page } = useAppStore();
+    const tasksPerPage = 15;
 
-export const Tasks = (props: TasksProps) => {
+    tasks.slice(0, page * tasksPerPage - 1);
+
     return (
         <div className="task-board__tasks">
-            {props.tasks.map((task, index) => {
+            {tasks.map((task, index) => {
                 let toRender: boolean = true;
 
-                if (!props.options.get(task.priority)) {
+                if (!tagOptions.get(task.priority)) {
                     toRender = false;
                 }
 
                 task.tags.forEach((element) => {
-                    if (!props.options.get(element)) {
+                    if (!tagOptions.get(element)) {
                         toRender = false;
                     }
                 });
 
-                return toRender ? (
-                    <TaskCard
-                        key={index}
-                        task={task}
-                        setCurrentTask={props.setCurrentTask}
-                        setIsTaskViewActive={props.setIsTaskViewActive}
-                    />
-                ) : null;
+                return toRender ? <TaskCard key={index} task={task} /> : null;
             })}
         </div>
     );

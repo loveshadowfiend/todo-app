@@ -1,8 +1,8 @@
-interface OptionProps {
-    switchSortOption: (option: string) => void;
-}
+import { useAppStore } from "../stores/AppStore";
 
-export const SortDate = (props: OptionProps) => {
+export const SortDate = () => {
+    const { switchSortOption } = useAppStore();
+
     return (
         <div className="sort-date">
             <h3 className="sort-date__header">СОРТИРОВКА</h3>
@@ -14,7 +14,7 @@ export const SortDate = (props: OptionProps) => {
                     value="sortDateNew"
                     defaultChecked={true}
                     onChange={(e) => {
-                        props.switchSortOption(e.target.value);
+                        switchSortOption(e.target.value);
                     }}
                 />
                 <label
@@ -32,7 +32,7 @@ export const SortDate = (props: OptionProps) => {
                     name="sort-date"
                     value="sortDateOld"
                     onChange={(e) => {
-                        props.switchSortOption(e.target.value);
+                        switchSortOption(e.target.value);
                     }}
                 />
                 <label

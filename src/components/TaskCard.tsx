@@ -1,12 +1,7 @@
+import { useAppStore } from "../stores/AppStore";
 import { Task } from "../types/task";
 
-interface TaskProps {
-    task: Task;
-    setCurrentTask: React.Dispatch<React.SetStateAction<Task>>;
-    setIsTaskViewActive: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export const TaskCard = (props: TaskProps) => {
+export const TaskCard = (props: { task: Task }) => {
     return (
         <div className="task-card container" id={props.task.id}>
             <a
@@ -14,8 +9,10 @@ export const TaskCard = (props: TaskProps) => {
                 onClick={(e) => {
                     e.preventDefault();
 
-                    props.setCurrentTask(props.task);
-                    props.setIsTaskViewActive(true);
+                    useAppStore.setState({
+                        currentTask: props.task,
+                        isTaskViewActive: true,
+                    });
                 }}
             >
                 <h1 className="task-card__name">{props.task.name}</h1>
