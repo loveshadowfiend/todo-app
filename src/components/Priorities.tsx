@@ -1,7 +1,7 @@
-import { useAppStore } from "../stores/AppStore";
+import { useGlobalStore } from "../stores/globalStore";
 
 export const Priorities = () => {
-    const { toggleTagOption } = useAppStore();
+    const { toggleTagOption } = useGlobalStore();
 
     return (
         <div className="priorities">

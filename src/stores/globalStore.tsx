@@ -5,7 +5,7 @@ import { defaultTagOptions } from "../constants/defaultTagOptions";
 import { defaultSortOptions } from "../constants/defaultSortOptions";
 import { v4 as uuidv4 } from "uuid";
 
-export interface AppState {
+export interface globalState {
     tasks: Task[];
     currentTask: Task;
     sortOptions: Map<string, boolean>;
@@ -23,7 +23,7 @@ export interface AppState {
     toggleTagOption: (option: string) => void;
 }
 
-export const useAppStore = create<AppState>((set, get) => ({
+export const useGlobalStore = create<globalState>((set, get) => ({
     tasks: [],
     currentTask: defaultTaskState,
     sortOptions: defaultSortOptions,

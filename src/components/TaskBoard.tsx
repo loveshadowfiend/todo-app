@@ -1,5 +1,5 @@
 import { Tasks } from "./Tasks";
-import { useAppStore } from "../stores/AppStore";
+import { useGlobalStore } from "../stores/globalStore";
 import { useEffect, useState } from "react";
 import { SortDate } from "./SortDate";
 import { Priorities } from "./Priorities";
@@ -39,7 +39,7 @@ export const TaskBoard = () => {
                 <button
                     className="task-board__add-task-button"
                     onClick={() =>
-                        useAppStore.setState({ isAddTaskActive: true })
+                        useGlobalStore.setState({ isAddTaskActive: true })
                     }
                 >
                     Добавить задачу
@@ -59,7 +59,7 @@ export const TaskBoard = () => {
                     <button
                         className="task-board__add-task-button"
                         onClick={() =>
-                            useAppStore.setState({ isAddTaskActive: true })
+                            useGlobalStore.setState({ isAddTaskActive: true })
                         }
                     >
                         Добавить задачу

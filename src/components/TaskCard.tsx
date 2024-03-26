@@ -1,4 +1,4 @@
-import { useAppStore } from "../stores/AppStore";
+import { useGlobalStore } from "../stores/globalStore";
 import { Task } from "../types/task";
 
 export const TaskCard = (props: { task: Task }) => {
@@ -9,7 +9,7 @@ export const TaskCard = (props: { task: Task }) => {
                 onClick={(e) => {
                     e.preventDefault();
 
-                    useAppStore.setState({
+                    useGlobalStore.setState({
                         currentTask: props.task,
                         isTaskViewActive: true,
                     });

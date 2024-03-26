@@ -1,16 +1,16 @@
 import { FormEvent, useState } from "react";
 import { Task } from "../types/task";
-import { useAppStore } from "../stores/AppStore";
+import { useGlobalStore } from "../stores/globalStore";
 
 export const TaskEditForm = () => {
-    const { currentTask, editTask } = useAppStore();
+    const { currentTask, editTask } = useGlobalStore();
     const [task, setTask] = useState<Task>(currentTask);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         editTask(task);
-        useAppStore.setState({
+        useGlobalStore.setState({
             isEditActive: false,
             isTaskViewActive: true,
             currentTask: task,
@@ -23,7 +23,7 @@ export const TaskEditForm = () => {
                 <button
                     className="task-edit__buttons-back"
                     onClick={() => {
-                        useAppStore.setState({ isEditActive: false });
+                        useGlobalStore.setState({ isEditActive: false });
                     }}
                 >
                     Назад

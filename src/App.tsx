@@ -5,7 +5,7 @@ import { TaskView } from "./components/TaskView";
 import { TaskEditForm } from "./components/TaskEditForm";
 import { useUpdateEffect } from "react-use";
 import { TaskBoard } from "./components/TaskBoard";
-import { useAppStore } from "./stores/AppStore";
+import { useGlobalStore } from "./stores/globalStore";
 
 const App = () => {
     // states
@@ -16,7 +16,7 @@ const App = () => {
         isEditActive,
         isLoading,
         page,
-    } = useAppStore();
+    } = useGlobalStore();
 
     // effects
     useEffect(() => {
@@ -29,7 +29,7 @@ const App = () => {
                 localStorageDataTasks
             );
 
-            useAppStore.setState({ tasks: localStorageDataTasksParsed });
+            useGlobalStore.setState({ tasks: localStorageDataTasksParsed });
         }
 
         // infinite scroll
@@ -40,7 +40,7 @@ const App = () => {
     useEffect(() => {
         if (!isLoading) return;
 
-        useAppStore.setState({ page: page + 1, isLoading: false });
+        useGlobalStore.setState({ page: page + 1, isLoading: false });
     }, [isLoading]);
 
     useUpdateEffect(() => {
@@ -65,7 +65,7 @@ const App = () => {
             Math.ceil(scrollTop + clientHeight) >= scrollHeight;
 
         if (scrolledToBottom && !isLoading) {
-            useAppStore.setState({ isLoading: true });
+            useGlobalStore.setState({ isLoading: true });
         }
     };
 

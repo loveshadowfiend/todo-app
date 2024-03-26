@@ -1,7 +1,7 @@
-import { useAppStore } from "../stores/AppStore";
+import { useGlobalStore } from "../stores/globalStore";
 
 export const SortDate = () => {
-    const { switchSortOption } = useAppStore();
+    const { switchSortOption } = useGlobalStore();
 
     return (
         <div className="sort-date">

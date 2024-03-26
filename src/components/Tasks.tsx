@@ -1,8 +1,8 @@
 import { TaskCard } from "./TaskCard";
-import { useAppStore } from "../stores/AppStore";
+import { useGlobalStore } from "../stores/globalStore";
 
 export const Tasks = () => {
-    const { tasks, tagOptions, page } = useAppStore();
+    const { tasks, tagOptions, page } = useGlobalStore();
     const tasksPerPage = 15;
 
     tasks.slice(0, page * tasksPerPage - 1);

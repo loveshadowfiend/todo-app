@@ -1,7 +1,7 @@
-import { useAppStore } from "../stores/AppStore";
+import { useGlobalStore } from "../stores/globalStore";
 
 export const TaskView = () => {
-    const { currentTask, deleteTask } = useAppStore();
+    const { currentTask, deleteTask } = useGlobalStore();
 
     return (
         <div className="task-view">
@@ -9,7 +9,7 @@ export const TaskView = () => {
                 <button
                     className="task-view__buttons-back"
                     onClick={() => {
-                        useAppStore.setState({ isTaskViewActive: false });
+                        useGlobalStore.setState({ isTaskViewActive: false });
                     }}
                 >
                     Назад
@@ -17,7 +17,7 @@ export const TaskView = () => {
                 <button
                     className="task-view__buttons-edit"
                     onClick={() => {
-                        useAppStore.setState({
+                        useGlobalStore.setState({
                             isTaskViewActive: false,
                             isEditActive: true,
                         });
@@ -29,7 +29,7 @@ export const TaskView = () => {
                     className="task-view__buttons-delete"
                     onClick={() => {
                         deleteTask(currentTask);
-                        useAppStore.setState({
+                        useGlobalStore.setState({
                             isTaskViewActive: false,
                         });
                     }}

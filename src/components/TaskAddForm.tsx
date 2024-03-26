@@ -1,10 +1,10 @@
 import { FormEvent, useState } from "react";
 import { Task } from "../types/task";
 import { defaultTaskState } from "../constants/defaultTaskState";
-import { useAppStore } from "../stores/AppStore";
+import { useGlobalStore } from "../stores/globalStore";
 
 export const TaskAddForm = () => {
-    const { addTask } = useAppStore();
+    const { addTask } = useGlobalStore();
     const [task, setTask] = useState<Task>(defaultTaskState);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -24,7 +24,7 @@ export const TaskAddForm = () => {
                 <button
                     className="task-add__buttons-back"
                     onClick={() => {
-                        useAppStore.setState({ isAddTaskActive: false });
+                        useGlobalStore.setState({ isAddTaskActive: false });
                     }}
                 >
                     Назад
