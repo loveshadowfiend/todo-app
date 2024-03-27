@@ -8,7 +8,7 @@ import { TaskBoard } from "./components/TaskBoard";
 import { useGlobalStore } from "./stores/globalStore";
 
 const App = () => {
-    // states
+    // load states
     const {
         tasks,
         isAddTaskActive,
@@ -28,6 +28,11 @@ const App = () => {
             const localStorageDataTasksParsed: Task[] = JSON.parse(
                 localStorageDataTasks
             );
+
+            // fix json date parse issue
+            localStorageDataTasksParsed.forEach((task) => {
+                task.creationDate = new Date(task.creationDate);
+            });
 
             useGlobalStore.setState({ tasks: localStorageDataTasksParsed });
         }
@@ -72,11 +77,9 @@ const App = () => {
     // render
     return (
         <div className="App">
-            <div
-                className={`task-board ${isAddTaskActive || isEditActive || isTaskViewActive ? "hidden" : ""}`}
-            >
+            {!isAddTaskActive && !isTaskViewActive && !isEditActive && (
                 <TaskBoard />
-            </div>
+            )}
 
             {isAddTaskActive && <TaskAddForm />}
 

@@ -5,18 +5,6 @@ import { SortDate } from "./SortDate";
 import { Priorities } from "./Priorities";
 import { Tags } from "./Tags";
 
-// interface TaskBoardProps {
-//     tasks: Task[];
-//     setIsAddTaskActive: React.Dispatch<SetStateAction<boolean>>;
-//     toggleTagOption: (option: string) => void;
-//     switchSortOption: (option: string) => void;
-//     page: number;
-//     tasksPerPage: number;
-//     options: Map<string, boolean>;
-//     setCurrentTask: React.Dispatch<SetStateAction<Task>>;
-//     setIsTaskViewActive: React.Dispatch<React.SetStateAction<boolean>>;
-// }
-
 export const TaskBoard = () => {
     const [width, setWidth] = useState<number>(window.innerWidth);
 
@@ -34,7 +22,7 @@ export const TaskBoard = () => {
     };
 
     return (
-        <>
+        <div className="task-board">
             {isMobile && (
                 <button
                     className="task-board__add-task-button"
@@ -67,6 +55,6 @@ export const TaskBoard = () => {
                 )}
                 <Tasks />
             </div>
-        </>
+        </div>
     );
 };

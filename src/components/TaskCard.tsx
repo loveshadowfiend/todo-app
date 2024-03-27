@@ -18,7 +18,7 @@ export const TaskCard = (props: { task: Task }) => {
                 <h1 className="task-card__name">{props.task.name}</h1>
             </a>
             <p className="task-card__date">
-                создано: {props.task.creationDate.toString()}
+                создано: {props.task.creationDate.toLocaleString()}
             </p>
             <p className="task-card__priority">
                 приоритет: {props.task.priority}

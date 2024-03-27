@@ -16,7 +16,8 @@
     "reset-css": "^5.0.2",
     "sass": "^1.71.1",
     "uuidv4": "^6.2.13",
-    "zustand": "^4.5.2"
+    "zustand": "^4.5.2",
+    "zustymiddleware": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",

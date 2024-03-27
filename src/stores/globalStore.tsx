@@ -1,12 +1,16 @@
+// NOTE/TODO: maybe it's better to separate logic between modules
+
 import { Task } from "../types/task";
 import { create } from "zustand";
 import { defaultTaskState } from "../constants/defaultTaskState";
 import { defaultTagOptions } from "../constants/defaultTagOptions";
 import { defaultSortOptions } from "../constants/defaultSortOptions";
 import { v4 as uuidv4 } from "uuid";
+import { devtools } from "zustand/middleware";
 
 export interface globalState {
     tasks: Task[];
+    tasksReversed: Task[];
     currentTask: Task;
     sortOptions: Map<string, boolean>;
     tagOptions: Map<string, boolean>;
@@ -23,64 +27,67 @@ export interface globalState {
     toggleTagOption: (option: string) => void;
 }
 
-export const useGlobalStore = create<globalState>((set, get) => ({
-    tasks: [],
-    currentTask: defaultTaskState,
-    sortOptions: defaultSortOptions,
-    tagOptions: defaultTagOptions,
-    isAddTaskActive: false,
-    isTaskViewActive: false,
-    isEditActive: false,
-    isLoading: false,
-    page: 1,
+export const useGlobalStore = create<globalState>()(
+    devtools((set, get) => ({
+        tasks: [],
+        tasksReversed: [],
+        currentTask: defaultTaskState,
+        sortOptions: defaultSortOptions,
+        tagOptions: defaultTagOptions,
+        isAddTaskActive: false,
+        isTaskViewActive: false,
+        isEditActive: false,
+        isLoading: false,
+        page: 1,
 
-    addTask: (task: Task) =>
-        set((state) => ({
-            tasks: [
-                ...state.tasks,
-                {
-                    ...task,
-                    id: uuidv4(),
-                    creationDate: new Date().toLocaleString(),
-                },
-            ],
-            isAddTaskActive: false,
-        })),
+        addTask: (task: Task) =>
+            set((state) => ({
+                tasks: [
+                    ...state.tasks,
+                    {
+                        ...task,
+                        id: uuidv4(),
+                        creationDate: new Date(),
+                    },
+                ],
+                isAddTaskActive: false,
+            })),
 
-    deleteTask: (deletedTask: Task) => {
-        const updatedTasks = get().tasks.filter((task) => {
-            return task.id != deletedTask.id;
-        });
+        deleteTask: (deletedTask: Task) => {
+            const updatedTasks = get().tasks.filter((task) => {
+                return task.id != deletedTask.id;
+            });
 
-        set({ tasks: updatedTasks });
-    },
+            set({ tasks: updatedTasks });
+        },
 
-    editTask: (editedTask: Task) => {
-        const updatedTasks = get().tasks.map((task) => {
-            return task.id == editedTask.id ? editedTask : task;
-        });
+        editTask: (editedTask: Task) => {
+            const updatedTasks = get().tasks.map((task) => {
+                return task.id == editedTask.id ? editedTask : task;
+            });
 
-        set({ tasks: updatedTasks });
-    },
+            set({ tasks: updatedTasks });
+        },
 
-    switchSortOption: (option: string) => {
-        const updatedSortOption = new Map(get().sortOptions);
+        switchSortOption: (option: string) => {
+            const updatedSortOption = new Map(get().sortOptions);
 
-        updatedSortOption.forEach((_, key) => {
-            key == option
-                ? updatedSortOption.set(key, true)
-                : updatedSortOption.set(key, false);
-        });
+            updatedSortOption.forEach((_, key) => {
+                key == option
+                    ? updatedSortOption.set(key, true)
+                    : updatedSortOption.set(key, false);
+            });
 
-        set({ sortOptions: updatedSortOption });
-    },
+            set({ sortOptions: updatedSortOption });
+        },
 
-    toggleTagOption: (option: string) => {
-        const updatedTagOption = new Map(get().tagOptions);
-        const value = get().tagOptions.get(option);
+        toggleTagOption: (option: string) => {
+            const updatedTagOption = new Map(get().tagOptions);
+            const value = get().tagOptions.get(option);
 
-        updatedTagOption.set(option, !value);
+            updatedTagOption.set(option, !value);
 
-        set({ tagOptions: updatedTagOption });
-    },
-}));
+            set({ tagOptions: updatedTagOption });
+        },
+    }))
+);
