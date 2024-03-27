@@ -1,0 +1,29 @@
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__input-name {
+        height: 30px;
+        width: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    &__select-priority,
+    &__select-tags {
+        height: 30px;
+        width: 30%;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    &__select-tags {
+        height: fit-content;
+        overflow-y: auto;
+    }
+
+    &__textarea-description {
+        resize: none;
+        width: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+}
