@@ -1,9 +1,9 @@
-import { Tasks } from "./Tasks";
+import { TasksList } from "./TasksList";
 import { useGlobalStore } from "../stores/globalStore";
 import { useEffect, useState } from "react";
 import { SortDate } from "./SortDate";
-import { Priorities } from "./Priorities";
 import { Tags } from "./Tags";
+// import { Tags } from "./DutyTags";
 
 export const TaskBoard = () => {
     const [width, setWidth] = useState<number>(window.innerWidth);
@@ -38,7 +38,6 @@ export const TaskBoard = () => {
                     <SortDate />
                 </div>
                 <div className="task-board__options__filter container">
-                    <Priorities />
                     <Tags />
                 </div>
             </div>
@@ -53,7 +52,7 @@ export const TaskBoard = () => {
                         Добавить задачу
                     </button>
                 )}
-                <Tasks />
+                <TasksList />
             </div>
         </div>
     );
