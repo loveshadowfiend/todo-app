@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Task } from "./types/task";
-import { TaskAddForm } from "./components/TaskAddForm";
+import { TaskAdd } from "./components/TaskAdd";
 import { TaskView } from "./components/TaskView";
-import { TaskEditForm } from "./components/TaskEditForm";
+import { TaskEdit } from "./components/TaskEdit";
 import { useUpdateEffect } from "react-use";
 import { TaskBoard } from "./components/TaskBoard";
 import { useGlobalStore } from "./stores/globalStore";
@@ -81,11 +81,11 @@ const App = () => {
                 <TaskBoard />
             )}
 
-            {isAddTaskActive && <TaskAddForm />}
+            {isAddTaskActive && <TaskAdd />}
 
             {isTaskViewActive && <TaskView />}
 
-            {isEditActive && <TaskEditForm />}
+            {isEditActive && <TaskEdit />}
         </div>
     );
 };
