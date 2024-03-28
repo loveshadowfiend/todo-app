@@ -1,6 +1,6 @@
 import { useGlobalStore } from "../stores/globalStore";
 import { Task } from "../types/task";
-import { formatTime } from "../utils/formatDate";
+import { formatTime } from "../utils/formatTime";
 
 export const TaskCard = (props: { task: Task }) => {
     return (
