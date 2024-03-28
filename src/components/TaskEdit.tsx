@@ -2,8 +2,9 @@ import { FormEvent, useState } from "react";
 import { Task } from "../types/task";
 import { useGlobalStore } from "../stores/globalStore";
 import { TaskForm } from "./TaskForm";
+import { BackButton } from "./BackButton";
 
-export const TaskEditForm = () => {
+export const TaskEdit = () => {
     const { currentTask, editTask } = useGlobalStore();
     const [task, setTask] = useState<Task>(currentTask);
 
@@ -21,14 +22,7 @@ export const TaskEditForm = () => {
     return (
         <div className="task-edit">
             <div className="task-edit__buttons">
-                <button
-                    className="task-edit__buttons-back"
-                    onClick={() => {
-                        useGlobalStore.setState({ isEditActive: false });
-                    }}
-                >
-                    Назад
-                </button>
+                <BackButton />
             </div>
             <TaskForm
                 task={task}

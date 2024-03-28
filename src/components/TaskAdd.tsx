@@ -3,8 +3,9 @@ import { Task } from "../types/task";
 import { defaultTaskState } from "../constants/defaultTaskState";
 import { useGlobalStore } from "../stores/globalStore";
 import { TaskForm } from "./TaskForm";
+import { BackButton } from "./BackButton";
 
-export const TaskAddForm = () => {
+export const TaskAdd = () => {
     const { addTask } = useGlobalStore();
     const [task, setTask] = useState<Task>(defaultTaskState);
 
@@ -22,14 +23,7 @@ export const TaskAddForm = () => {
     return (
         <div className="task-add">
             <div className="task-add__buttons">
-                <button
-                    className="task-add__buttons-back"
-                    onClick={() => {
-                        useGlobalStore.setState({ isAddTaskActive: false });
-                    }}
-                >
-                    Назад
-                </button>
+                <BackButton />
             </div>
             <TaskForm
                 task={task}

@@ -2,7 +2,7 @@ import { TaskCard } from "./TaskCard";
 import { useGlobalStore } from "../stores/globalStore";
 import { Task } from "../types/task";
 
-export const Tasks = () => {
+export const TasksList = () => {
     const { tasks, sortOptions, tagOptions, page } = useGlobalStore();
     const tasksPerPage = 15;
 
