@@ -1,5 +1,6 @@
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import { Task } from "../types/task";
+import { useGlobalStore } from "../stores/globalStore";
 
 interface TaskFormProps {
     task: Task;
@@ -8,24 +9,46 @@ interface TaskFormProps {
 }
 
 export const TaskForm = (props: TaskFormProps) => {
+    const { isEditActive, currentTask } = useGlobalStore();
+    const [isNameDirty, setIsNameDirty] = useState<boolean>(false);
+
     return (
         <form
             className="task-form container"
-            onSubmit={(e) => props.handleSubmit(e)}
+            onSubmit={(e) => {
+                if (props.task.name == "") {
+                    e.preventDefault();
+                    setIsNameDirty(true);
+                } else {
+                    props.handleSubmit(e);
+                }
+            }}
         >
-            <div>
+            <div className="task-form__row">
                 <h3>НАЗВАНИЕ ЗАДАЧИ</h3>
                 <input
                     className="task-form__input-name"
                     name="name"
                     type="text"
                     onChange={(e) => {
+                        setIsNameDirty(false);
                         props.setTask({
                             ...props.task,
                             name: e.target.value,
                         });
                     }}
+                    onBlur={() => {
+                        if (props.task.name.length === 0) {
+                            setIsNameDirty(true);
+                        } else {
+                            setIsNameDirty(false);
+                        }
+                    }}
+                    defaultValue={isEditActive ? currentTask.name : ""}
                 />
+                {isNameDirty && (
+                    <p className="task-form__error">Введите название</p>
+                )}
             </div>
 
             <div>
@@ -39,6 +62,7 @@ export const TaskForm = (props: TaskFormProps) => {
                             priority: e.target.value,
                         });
                     }}
+                    defaultValue={currentTask.priority}
                 >
                     <option value="low">low</option>
                     <option value="normal">normal</option>
@@ -46,12 +70,14 @@ export const TaskForm = (props: TaskFormProps) => {
                 </select>
             </div>
 
-            <div>
+            <div className="task-form__row">
                 <h3>ОТМЕТКИ</h3>
                 <select
                     className="task-form__select-tags"
                     name="tags"
-                    defaultValue={["research"]}
+                    defaultValue={
+                        isEditActive ? currentTask.tags : ["research"]
+                    }
                     multiple
                     size={3}
                     onChange={(e) => {
@@ -72,7 +98,7 @@ export const TaskForm = (props: TaskFormProps) => {
                 </select>
             </div>
 
-            <div>
+            <div className="task-form__row">
                 <h3>ОПИСАНИЕ</h3>
                 <textarea
                     className="task-form__textarea-description"
@@ -86,6 +112,7 @@ export const TaskForm = (props: TaskFormProps) => {
                             description: e.target.value,
                         });
                     }}
+                    defaultValue={isEditActive ? currentTask.description : ""}
                 ></textarea>
             </div>
 
