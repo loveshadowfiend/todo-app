@@ -4,9 +4,15 @@
     gap: 20px;
 
     &__input-name {
-        height: 30px;
+        height: 25px;
         width: 100%;
         border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    &__error {
+        padding-top: 5px;
+        font-size: 14px;
+        color: var(--color-pastel-red);
     }
 
     &__select-priority,
@@ -25,5 +31,19 @@
         resize: none;
         width: 100%;
         border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    @include mobile {
+        &__select-priority,
+        &__select-tags {
+            width: 70%;
+        }
+    }
+
+    @include tablet {
+        &__select-priority,
+        &__select-tags {
+            width: 50%;
+        }
     }
 }

@@ -4,17 +4,16 @@
 
     &__buttons {
         padding-bottom: 20px;
-        width: 50vw;
         display: flex;
         gap: 10px;
 
         &-delete {
-            background-color: var(--color-rose);
+            background-color: var(--color-pastel-red);
             margin-left: auto;
         }
 
         &-edit {
-            background-color: var(--color-foam);
+            background-color: var(--color-pastel-orange);
         }
 
         button {

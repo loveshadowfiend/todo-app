@@ -1,5 +1,5 @@
-@import "utils", "vars", "media", "globals";
+@import "font", "utils", "vars", "media", "globals";
 
 @import "blocks/task-board", "blocks/task-view", "blocks/task-card",
-    "blocks/task-add", "blocks/task-edit", "blocks/priorities", "blocks/tags",
-    "blocks/sort-date", "blocks/task-form";
+    "blocks/task-add", "blocks/task-edit", "blocks/tags", "blocks/sort-date",
+    "blocks/task-form", "blocks/tag-row";
