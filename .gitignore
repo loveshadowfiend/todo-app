@@ -28,3 +28,4 @@ dist-ssr
 *.css.map
 *.sass.map
 *.scss.map
+src/styles/style.css.map
