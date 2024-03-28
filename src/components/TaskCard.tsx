@@ -1,5 +1,6 @@
 import { useGlobalStore } from "../stores/globalStore";
 import { Task } from "../types/task";
+import { formatTime } from "../utils/formatDate";
 
 export const TaskCard = (props: { task: Task }) => {
     return (
@@ -18,7 +19,7 @@ export const TaskCard = (props: { task: Task }) => {
                 <h1 className="task-card__name">{props.task.name}</h1>
             </a>
             <p className="task-card__date">
-                создано: {props.task.creationDate.toLocaleString()}
+                создано: {formatTime(props.task.creationDate)}
             </p>
             <p className="task-card__priority">
                 приоритет: {props.task.priority}
