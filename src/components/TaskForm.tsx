@@ -117,9 +117,7 @@ export const TaskForm = (props: TaskFormProps) => {
                 ></textarea>
             </div>
 
-            <button className="task-form__submit-button" type="submit">
-                Сохранить
-            </button>
+            <button className="task-form__submit-button">Сохранить</button>
         </form>
     );
 };
