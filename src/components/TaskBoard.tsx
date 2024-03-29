@@ -1,12 +1,13 @@
 import { TasksList } from "./TasksList";
 import { useGlobalStore } from "../stores/globalStore";
 import { useEffect, useState } from "react";
-import { SortDate } from "./SortDate";
+import { SortOptions } from "./SortOptions";
 import { Tags } from "./Tags";
-// import { Tags } from "./DutyTags";
 
 export const TaskBoard = () => {
     const [width, setWidth] = useState<number>(window.innerWidth);
+    const { isAddTaskActive, isEditActive, isTaskViewActive } =
+        useGlobalStore();
 
     const isMobile = width < 768;
 
@@ -22,7 +23,9 @@ export const TaskBoard = () => {
     };
 
     return (
-        <div className="task-board">
+        <div
+            className={`task-board ${isAddTaskActive || isEditActive || isTaskViewActive ? "hidden" : ""}`}
+        >
             {isMobile && (
                 <button
                     className="task-board__add-task-button"
@@ -35,7 +38,7 @@ export const TaskBoard = () => {
             )}
             <div className="task-board__options">
                 <div className="task-board__options__sort container">
-                    <SortDate />
+                    <SortOptions />
                 </div>
                 <div className="task-board__options__filter container">
                     <Tags />

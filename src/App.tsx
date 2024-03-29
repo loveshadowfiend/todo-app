@@ -77,9 +77,7 @@ const App = () => {
     // render
     return (
         <div className="App">
-            {!isAddTaskActive && !isTaskViewActive && !isEditActive && (
-                <TaskBoard />
-            )}
+            <TaskBoard />
 
             {isAddTaskActive && <TaskAdd />}
 

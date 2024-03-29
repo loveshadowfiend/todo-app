@@ -1,8 +1,10 @@
 import { useGlobalStore } from "../stores/globalStore";
 
 export const TagRow = (props: { children: React.ReactNode }) => {
-    const { toggleTagOption } = useGlobalStore();
+    const { toggleTagOption, tagOptions } = useGlobalStore();
     const value = props.children?.toString().toLowerCase();
+    const isValueChecked = tagOptions.get(value ?? "") ?? true;
+
     return (
         <div className="tag-row">
             <input
@@ -10,7 +12,7 @@ export const TagRow = (props: { children: React.ReactNode }) => {
                 type="checkbox"
                 name="tag"
                 value={value}
-                defaultChecked={true}
+                defaultChecked={isValueChecked}
                 onChange={(e) => {
                     toggleTagOption(e.target.value);
                 }}
