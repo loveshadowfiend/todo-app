@@ -29,6 +29,11 @@
     }
 
     &__select-tags {
+        -webkit-appearance: menulist-button;
+        line-height: 25px;
+    }
+
+    &__select-tags {
         height: fit-content;
         overflow-y: auto;
     }

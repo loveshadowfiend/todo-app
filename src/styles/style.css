@@ -501,6 +501,10 @@ textarea {
   padding: 5px;
 }
 .task-form__select-tags {
+  -webkit-appearance: menulist-button;
+  line-height: 25px;
+}
+.task-form__select-tags {
   height: -moz-fit-content;
   height: fit-content;
   overflow-y: auto;
