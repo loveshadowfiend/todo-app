@@ -1,11 +1,8 @@
-.tags {
+.sort-options {
     display: flex;
     flex-direction: column;
 
-    gap: 20px;
-
-    &__priority__rows,
-    &__duty__rows {
+    &__rows {
         display: flex;
         flex-direction: column;
         gap: 5px;

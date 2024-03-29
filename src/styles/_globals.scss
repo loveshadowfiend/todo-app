@@ -1,9 +1,9 @@
 * {
-    font-family: "Century Gothic";
+    font-family: var(--font-family-base);
 }
 
 body {
-    font-family: "Century Gothic";
+    font-family: var(--font-family-base);
     margin-top: 5vh;
     margin-bottom: 5vh;
 }
@@ -30,7 +30,6 @@ a {
 button {
     border-radius: var(--border-radius);
     border: none;
-    font-family: "Century Gothic";
 
     display: flex;
     align-items: center;
@@ -47,7 +46,6 @@ button {
 }
 
 input[type="text"] {
-    font-family: "Century Gothic";
     font-size: 14px;
     padding: 5px;
 }
@@ -61,10 +59,6 @@ textarea:focus {
 
 textarea:focus {
     outline: none;
-}
-
-option {
-    font-family: "Century Gothic";
 }
 
 h1,

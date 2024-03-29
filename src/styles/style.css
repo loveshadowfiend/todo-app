@@ -24,7 +24,7 @@
 
 :root {
   --border-radius: 3px;
-  --font-family-base: "Helvetica";
+  --font-family-base: "Century Gothic";
   --padding-side: 215px;
   --color-base: #faf4ed;
   --color-surface: #fffaf3;
@@ -48,11 +48,11 @@
 }
 
 * {
-  font-family: "Century Gothic";
+  font-family: var(--font-family-base);
 }
 
 body {
-  font-family: "Century Gothic";
+  font-family: var(--font-family-base);
   margin-top: 5vh;
   margin-bottom: 5vh;
 }
@@ -85,7 +85,6 @@ a {
 button {
   border-radius: var(--border-radius);
   border: none;
-  font-family: "Century Gothic";
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,7 +105,6 @@ button {
 }
 
 input[type=text] {
-  font-family: "Century Gothic";
   font-size: 14px;
   padding: 5px;
 }
@@ -120,10 +118,6 @@ textarea:focus {
 
 textarea:focus {
   outline: none;
-}
-
-option {
-  font-family: "Century Gothic";
 }
 
 h1,
@@ -203,7 +197,7 @@ p {
 .task-view__card {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
 }
 @media (max-width: 767px) {
   .task-view {
@@ -287,16 +281,20 @@ p {
   flex-direction: column;
   gap: 20px;
 }
+.tags__priority__rows, .tags__duty__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 
-.sort-date {
+.sort-options {
   display: flex;
   flex-direction: column;
 }
-.sort-date__option-label {
-  padding-left: 5px;
-}
-.sort-date__row {
-  padding-bottom: 5px;
+.sort-options__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .task-form {
@@ -341,5 +339,9 @@ p {
 }
 
 .tag-row__label {
+  padding-left: 5px;
+}
+
+.sort-option-row__label {
   padding-left: 5px;
 }/*# sourceMappingURL=style.css.map */
