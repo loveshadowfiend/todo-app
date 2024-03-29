@@ -3,7 +3,7 @@ import { Task } from "./types/task";
 import { TaskAdd } from "./components/TaskAdd";
 import { TaskView } from "./components/TaskView";
 import { TaskEdit } from "./components/TaskEdit";
-import { useUpdateEffect } from "react-use";
+import { useEffectOnce, useUpdateEffect } from "react-use";
 import { TaskBoard } from "./components/TaskBoard";
 import { useGlobalStore } from "./stores/globalStore";
 
@@ -19,7 +19,7 @@ const App = () => {
     } = useGlobalStore();
 
     // effects
-    useEffect(() => {
+    useEffectOnce(() => {
         // load tasks from local storage
         const localStorageDataTasks: string =
             localStorage.getItem("tasks") ?? "";
@@ -40,13 +40,13 @@ const App = () => {
         // infinite scroll
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    });
 
     useEffect(() => {
         if (!isLoading) return;
 
         useGlobalStore.setState({ page: page + 1, isLoading: false });
-    }, [isLoading]);
+    }, [isLoading, page]);
 
     useUpdateEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
