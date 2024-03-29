@@ -55,7 +55,7 @@ export const TaskForm = (props: TaskFormProps) => {
             <div>
                 <h3>ПРИОРИТЕТ</h3>
                 <select
-                    className="task-form__select-priority"
+                    className="task-form__select-priority select-dropdown"
                     name="priority"
                     onChange={(e) => {
                         props.setTask({

@@ -195,18 +195,12 @@ p {
 }
 
 select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
     font-size: 14px;
     appearance: none;
     border: 1px solid #ddd;
     border-radius: 3px;
     background-color: white;
     padding: 0px;
-
-    &::-ms-expand {
-        display: none;
-    }
 }
 
 input,
