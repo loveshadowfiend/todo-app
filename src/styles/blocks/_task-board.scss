@@ -7,7 +7,7 @@
     gap: 20px;
 
     &__add-task-button {
-        background-color: var(--color-pastel-green);
+        background-color: var(--color-foam);
     }
 
     &__options {
@@ -29,7 +29,6 @@
 
     @include mobile {
         display: grid;
-        font-size: 14px;
 
         &__tasks__add-task-button {
             order: 1;

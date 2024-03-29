@@ -5,6 +5,7 @@
 
     &__input-name {
         height: 25px;
+        padding: 5px;
         width: 100%;
         border: 1px solid rgba(0, 0, 0, 0.08);
     }
@@ -12,14 +13,22 @@
     &__error {
         padding-top: 5px;
         font-size: 14px;
-        color: var(--color-pastel-red);
+        color: var(--color-love);
     }
 
     &__select-priority,
     &__select-tags {
-        height: 30px;
         width: 30%;
         border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    &__select-priority {
+        height: 37px;
+        padding: 5px;
+    }
+
+    &__select-tags {
+        padding: 5px;
     }
 
     &__select-tags {
@@ -28,6 +37,7 @@
     }
 
     &__textarea-description {
+        padding: 5px;
         resize: none;
         width: 100%;
         border: 1px solid rgba(0, 0, 0, 0.08);

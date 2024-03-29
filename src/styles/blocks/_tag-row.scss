@@ -1,5 +1,4 @@
 .tag-row {
-    &__label {
-        padding-left: 5px;
-    }
+    display: flex;
+    align-items: center;
 }

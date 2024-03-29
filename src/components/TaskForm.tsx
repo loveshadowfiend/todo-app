@@ -45,6 +45,7 @@ export const TaskForm = (props: TaskFormProps) => {
                         }
                     }}
                     defaultValue={isEditActive ? currentTask.name : ""}
+                    autoComplete="off"
                 />
                 {isNameDirty && (
                     <p className="task-form__error">Введите название</p>
