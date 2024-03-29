@@ -22,12 +22,9 @@
         border: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    &__select-priority {
-        height: 37px;
-        padding: 5px;
-    }
-
+    &__select-priority,
     &__select-tags {
+        height: 37px;
         padding: 5px;
     }
 

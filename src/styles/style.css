@@ -492,11 +492,8 @@ textarea {
   width: 30%;
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
-.task-form__select-priority {
+.task-form__select-priority, .task-form__select-tags {
   height: 37px;
-  padding: 5px;
-}
-.task-form__select-tags {
   padding: 5px;
 }
 .task-form__select-tags {
