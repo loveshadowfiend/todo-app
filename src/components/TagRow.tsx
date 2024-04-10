@@ -8,6 +8,7 @@ export const TagRow = (props: { children: React.ReactNode }) => {
     return (
         <div className="tag-row">
             <input
+                id={value}
                 className="tag-row__option"
                 type="checkbox"
                 name="tag"
